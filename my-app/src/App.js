@@ -1,5 +1,4 @@
 const express = require("express");
-const { render } = require("react-dom/cjs/react-dom.production.min");
 require("dotenv").config();
 const app = express();
 const SpotifyWebApi = require("spotify-web-api-node");
