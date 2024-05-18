@@ -1,9 +1,8 @@
 const express = require("express");
+const { render } = require("react-dom/cjs/react-dom.production.min");
 require("dotenv").config();
 const app = express();
 const SpotifyWebApi = require("spotify-web-api-node");
-const port = 3000;
-const router = express.Router();
 
 //this my login authorization Endpoint
 // This is my Redirect URI for my app to work with Spotify and Spotify loging in my app http://localhost:3000 and to long me to my home page.
@@ -41,6 +40,7 @@ app.get("/callback", (req, res, next) => {
 });
 
 // If there is an error, log it and send a response to the user.
+
 if (error) {
   console.error("Callback Error:", error);
   res.send(`Callback Error: ${error}`);
@@ -48,16 +48,14 @@ if (error) {
 }
 
 // Exchange the code for an access token and a refresh token.
-spotifyApi
-  .authorizationCodeGrant(code)
+SpotifyApi.authorizationCodeGrant(code)
   .then((data) => {
     const accessToken = data.body["access_token"];
     const refreshToken = data.body["refresh_token"];
-    const expiresIn = data.body["expires_in"];
 
     // Set the access token and refresh token on the Spotify API object.
-    spotifyApi.setAccessToken(accessToken);
-    spotifyApi.setRefreshToken(refreshToken);
+    SpotifyApi.setAccessToken(accessToken);
+    SpotifyApi.setRefreshToken(refreshToken);
 
     // Logging tokens can be a security risk; this should be avoided in production.
     console.log("The access token is " + accessToken);
@@ -68,14 +66,13 @@ spotifyApi
     res.send("Error getting tokens");
   });
 
-// Route handler for the search endpoint.
+// Route handler for the search music endpoint.
 app.get("/search", (req, res) => {
   // Extract the search query parameter.
   const { q } = req.query;
 
   // Make a call to Spotify's search API with the provided query.
-  spotifyApi
-    .searchTracks(q)
+  SpotifyApi.searchTracks(q)
     .then((searchData) => {
       // Extract the URI of the first track from the search results.
       const trackUri = searchData.body.tracks.items[0].uri;
@@ -88,14 +85,29 @@ app.get("/search", (req, res) => {
     });
 });
 
+// Route look for artist and play.
+app.get("/artist", (req, res) => {
+  // Extract the track URI from the query parameters.
+  const { uri } = req.query;
+
+  // Send a request to Spotify to start playback of the track with the given URI.
+  SpotifyApi.artist({ uris: [uri] })
+    .then(() => {
+      res.send("Playback started");
+    })
+    .catch((err) => {
+      console.error("artist Error:", err);
+      res.send("Error occurred playback");
+    });
+});
+
 // Route handler for the play endpoint.
 app.get("/play", (req, res) => {
   // Extract the track URI from the query parameters.
   const { uri } = req.query;
 
   // Send a request to Spotify to start playback of the track with the given URI.
-  spotifyApi
-    .play({ uris: [uri] })
+  SpotifyApi.play({ uris: [uri] })
     .then(() => {
       res.send("Playback started");
     })
@@ -106,6 +118,8 @@ app.get("/play", (req, res) => {
 });
 
 // Start the Express server.
+
+const port = 3000;
 app.listen(port, () => {
   console.log(`Listening at http://localhost:${port}`);
 });
