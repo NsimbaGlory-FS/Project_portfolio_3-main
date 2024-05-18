@@ -5,11 +5,16 @@ const SpotifyWebApi = require("spotify-web-api-node");
 const port = 3000;
 const router = express.Router();
 
+//this my login authorization Endpoint
+// This is my Redirect URI for my app to work with Spotify and Spotify loging in my app http://localhost:3000 and to long me to my home page.
+// This is my Client ID for my app and I took it from my Spotify account (Glory Nsimba) Developer Dashboard
+
 const SpotifyApi = new SpotifyWebApi({
   clientId: "56457ed506eb4fd7b916be6e7573f55e",
   clientSecret: "143a7e6c3b3c4cf99926d83da01fcdd1",
   redirectUri: "http://localhost:3000/callback",
 });
+// This List Scopes are needed when some of the authorization
 
 app.get("/SignIn", (req, res, next) => {
   const scope = [
@@ -29,7 +34,7 @@ app.get("/SignIn", (req, res, next) => {
   ];
   res.redirect(SpotifyApi.createAuthorizeURL(scopes));
 });
-// Route for callback endpoint after SignIn
+// // Route for callback endpoint after SignIn
 app.get("/callback", (req, res, next) => {
   const code = req.query.code;
   const error = req.query.error;
@@ -57,18 +62,6 @@ spotifyApi
     // Logging tokens can be a security risk; this should be avoided in production.
     console.log("The access token is " + accessToken);
     console.log("The refresh token is " + refreshToken);
-
-    // Send a success message to the user.
-    res.send(
-      "Login successful! You can now use the /search and /play endpoints."
-    );
-
-    // Refresh the access token periodically before it expires.
-    setInterval(async () => {
-      const data = await spotifyApi.refreshAccessToken();
-      const accessTokenRefreshed = data.body["access_token"];
-      spotifyApi.setAccessToken(accessTokenRefreshed);
-    }, (expiresIn / 2) * 1000); // Refresh halfway before expiration.
   })
   .catch((error) => {
     console.error("Error getting Tokens:", error);
