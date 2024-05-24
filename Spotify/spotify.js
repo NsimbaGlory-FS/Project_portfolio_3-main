@@ -5,30 +5,13 @@ const bodyParser = require("body-parser");
 const SpotifyWebApi = require("spotify-web-api-node");
 
 const app = express();
+app.use(cors());
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 
 const port = 3000;
-
-app.post("/refresh", (req, res) => {
-  const refreshToken = req.body.refreshToken;
-  const spotifyApi = new SpotifyWebApi({
-    redirectUri: process.env.REDIRECT_URI,
-    clientId: process.env.CLIENT_ID,
-    clientSecret: process.env.CLIENT_SECRET,
-    refreshToken,
-  });
-
-  spotifyApi
-    .refreshAccessToken()
-    .then((data) => {
-      res.json({
-        accessToken: data.body.accessToken,
-        expiresIn: data.body.expiresIn,
-      });
-    })
-    .catch((err) => {
-      console.log(err);
-      res.sendStatus(400);
-    });
+app.listen(port, () => {
+  console.log(`spotify run on ${port}`);
 });
 
 app.post("/SignIn", (req, res) => {
@@ -46,10 +29,10 @@ app.post("/SignIn", (req, res) => {
         refreshToken: data.body.refresh_token,
         expiresIn: data.body.expires_in,
       });
+      spotifyApi.setAccessToken(data.body.access_token);
+      spotifyApi.setRefreshToken(data.body.refresh_token);
     })
     .catch((err) => {
       res.sendStatus(400);
     });
 });
-
-app.listen(3000);
