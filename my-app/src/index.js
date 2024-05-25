@@ -6,6 +6,7 @@ ReactDOM.render(
   <React.StrictMode>
     <div>
       <App />
+      <h1> Spotify</h1>
     </div>
   </React.StrictMode>,
   document.getElementById("root")

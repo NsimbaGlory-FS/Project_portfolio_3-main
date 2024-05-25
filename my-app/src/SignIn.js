@@ -4,7 +4,7 @@ import { Container } from "react-bootstrap";
 export default function Login() {
   const handleClick = async () => {
     const client_id = "56457ed506eb4fd7b916be6e7573f55e";
-    const redirect_uri = "http://localhost:3000";
+    const redirect_uri = "http://localhost:3000/callback";
     const api_uri = "https://accounts.spotify.com/authorize";
     const scope = [
       "user-read-private",
