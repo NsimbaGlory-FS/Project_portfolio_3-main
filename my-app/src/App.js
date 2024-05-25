@@ -1,11 +1,11 @@
 import SignIn from "./SignIn";
-import Dashboard from "./Dashboard";
+import Home from "./Home";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 const code = new URLSearchParams(window.location.search).get("code");
 
 function App() {
-  return code ? <Dashboard code={code} /> : <SignIn />;
+  return code ? <Home code={code} /> : <SignIn />;
 }
 
 export default App;

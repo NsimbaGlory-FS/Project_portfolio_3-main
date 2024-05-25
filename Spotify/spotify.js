@@ -72,7 +72,7 @@ app.get("/callback", (req, res) => {
       }, (expiresIn / 2) * 1000);
     })
     .catch((error) => {
-      console.error("Error getting Tokens:", error);
+      console.error("Error Tokens:", error);
       res.send("Error getting tokens");
     });
 });
