@@ -1,5 +1,5 @@
 import React from "react";
-import { useSate } from "react";
+import { useSate, useEffect } from "react";
 import auth from "./auth";
 import "bootstrap/dist/css/bootstrap.min.css";
 import SpotifyWebApi from "spotify-web-api-node";
@@ -9,18 +9,18 @@ const spotifyApi = new SpotifyWebApi({
 });
 
 export default function Dashboard({ code }) {
-  const accessToken = useAuth(code);
+  const accessToken = auth(code);
   const [searchTerm, setSearch] = React.useState("");
   const [searchResults, setSearchResults] = React.useState([]);
   const [playerTrack, setPlayerTrack] = React.useState();
 
   const handleSearchChange = (e) => {
-    setSearch(e.target.value);
+    searchTerm(e.target.value);
   };
 
   function chooseTrack(track) {
     setPlayerTrack(track);
-    setSearch("");
+    searchTerm("");
   }
 
   useEffect(() => {
@@ -29,11 +29,11 @@ export default function Dashboard({ code }) {
   }, [accessToken]);
 
   useEffect(() => {
-    if (!search) return setSearchResults([]);
+    if (!searchTerm) return setSearchResults([]);
     if (!accessToken) return;
 
     let cancel = false;
-    spotifyApi.searchTracks(search).then((res) => {
+    spotifyApi.setSearchResults(searchTerm).then((res) => {
       if (cancel) return;
       setSearchResults(
         res.body.tracks.items.map((track) => {
@@ -56,7 +56,7 @@ export default function Dashboard({ code }) {
     });
 
     return () => (cancel = true);
-  }, [search, accessToken]);
+  }, [searchTerm, accessToken]);
 
   return (
     <div className="min-h-screen bg-gray-100 p-8">

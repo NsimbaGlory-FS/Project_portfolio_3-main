@@ -15,6 +15,7 @@ app.listen(port, () => {
 });
 
 app.post("/SignIn", (req, res) => {
+  const code = req.body.code;
   const spotifyApi = new SpotifyWebApi({
     clientId: process.env.CLIENT_ID,
     clientSecret: process.env.CLIENT_SECRET,
