@@ -16,7 +16,7 @@ const LoginPage = () => {
     <div className={styles.page}>
       <img src={logo} />
       <Button type="primary" onClick={handleLogin}>
-        Login with Spotify
+        Sign In with Spotify
       </Button>
     </div>
   );
