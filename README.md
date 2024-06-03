@@ -26,11 +26,11 @@ In order to setup the project we will need to setup our .env file. You can do th
 cp .env.dist .env && vim .env
 Place all of your environment variables inside the vim window, then save. After you have done that you will need to install all of your node_modules using the following command. Make sure you have yarn installed globally as well.
 
-npm install -g yarn
-yarn
-After yarn has finished installing all of your node_modules you can now run the project. You will need to open two different bash sessions. One for the frontend app and one for the backend Express application.
+## To Run (frontend)
 
-To Run Nuxt.js (frontend)
+Npm start : for server
+
+Npm run dev : for web
 
 cd nuxt
 yarn dev
@@ -43,8 +43,8 @@ yarn watch
 The links to the project are as follows:
 
 http://localhost:5173/ - Link to the frontend (Nuxt.js) application. This is the primary user interface of the Spotify application
-http://localhost:3001 - Link to the backend (Express) API.
-http://localhost:3001/spotify/v1 - Link to the Spotify API middleware.
-http://localhost:3001/spotify/v1/status - Endpoint to check the status of our application's JWT. Returns true if a valid JWT exists. False otherwise.
-http://localhost:3001/spotify/v1/login - Endpoint request a new JWT from Spotify using the authentication workflow
-http://localhost:3001/spotify/v1/search - Endpoint for a general/global search to Spotify. Returns JSON of all results.
+http://localhost:5173/ - Link to the backend (Express) API.
+http://localhost:5173/- Link to the Spotify API middleware.
+http://localhost:3000/spotify/v1/status - Endpoint to check the status of our application's JWT. Returns true if a valid JWT exists. False otherwise.
+http://localhost:5173//spotify/v1/login - Endpoint request a new JWT from Spotify using the authentication workflow
+http://localhost:3000/spotify/v1/search - Endpoint for a general/global search to Spotify. Returns JSON of all results.
