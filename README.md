@@ -6,25 +6,28 @@ This project uses the Spotify Web API to perform a generalized global search for
 
 Docker Engine >= latest (for Mac or other platform)
 NodeJS >= v16.13.0
-Yarn >= v1.22.19
 npm >= v8.1.0
-Brew >= v3.4.3 (if MacOS)
 MySQL Server >= v8.0.28
 Chrome/Firefox/Safari/Edge >= Latest 2 major versions
 
 # Other Considerations
 
-Ports 3000, and 3001 must be open on host OS. Make sure no other applications are running on those ports by running the following command:
-
-sudo lsof -nP -i4TCP:3000 | grep LISTEN && sudo lsof -nP -i4TCP:3001 | grep LISTEN
+Ports 3000, and 5173 must be open on host OS. Make sure no other applications are running on those ports by running the following command:
 If any results shows are displayed then you must close the application running on either of those ports.
 
 # Getting Started
 
-In order to setup the project we will need to setup our .env file. You can do this by making a copy of our .env.dist and naming it to .env using the following command.
+## Node.js:
 
-cp .env.dist .env && vim .env
-Place all of your environment variables inside the vim window, then save. After you have done that you will need to install all of your node_modules using the following command. Make sure you have yarn installed globally as well.
+I have to install nodejs to my project
+
+## Nodemon:
+
+I have make sure my Nodemon is already install to help me to running my project
+
+## Npm :
+
+I use Npm to start my project to my broswer and I have to make sure my Npm was install
 
 ## To Run (frontend)
 
@@ -32,19 +35,12 @@ Npm start : for server
 
 Npm run dev : for web
 
-cd nuxt
-yarn dev
-To Run Express (backend)
-
-yarn watch
+# Setup
 
 # Links
 
 The links to the project are as follows:
 
-http://localhost:5173/ - Link to the frontend (Nuxt.js) application. This is the primary user interface of the Spotify application
-http://localhost:5173/ - Link to the backend (Express) API.
-http://localhost:5173/- Link to the Spotify API middleware.
-http://localhost:3000/spotify/v1/status - Endpoint to check the status of our application's JWT. Returns true if a valid JWT exists. False otherwise.
-http://localhost:5173//spotify/v1/login - Endpoint request a new JWT from Spotify using the authentication workflow
-http://localhost:3000/spotify/v1/search - Endpoint for a general/global search to Spotify. Returns JSON of all results.
+http://localhost:5173/ - Link to the frontend application. This is the primary user interface of the Spotify application
+
+http://localhost:3000/- Endpoint to check the status of our application's spotify.
