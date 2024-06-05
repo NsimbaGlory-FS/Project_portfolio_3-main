@@ -4,13 +4,19 @@ This project uses the Spotify Web API to perform a generalized global search for
 
 # Prerequisites
 
-Node.js version 16
-npm (Node Package Manager)
-axios
-dotenv
-Vite
-Nodemode
-Express
+### Node.js version 16
+
+### npm (Node Package Manager)
+
+### axios
+
+### dotenv
+
+### Vite
+
+### Nodemode
+
+### Express
 
 # Other Considerations
 
