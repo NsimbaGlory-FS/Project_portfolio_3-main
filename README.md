@@ -1,14 +1,16 @@
 # Project_portfolio_3
 
-This project uses the Spotify Web API to perform a generalized global search for Artists, Albums, and Tracks. This project contains both a frontend and a backend in a microservice structure that keeps track of OAuth JSON web tokens. This project serves as a template for other projects inside of the Project Portfolio III course. DO NOT COPY.
+This project uses the Spotify Web API to perform a generalized global search for Artists and Albums. This project contains both a frontend and a backend in a microservice structure that keeps track of OAuth JSON web tokens. This project serves as a template for other projects inside of the Project Portfolio III course.
 
 # Prerequisites
 
-Docker Engine >= latest (for Mac or other platform)
-NodeJS >= v16.13.0
-npm >= v8.1.0
-MySQL Server >= v8.0.28
-Chrome/Firefox/Safari/Edge >= Latest 2 major versions
+Node.js version 16
+npm (Node Package Manager)
+axios
+dotenv
+Vite
+Nodemode
+Express
 
 # Other Considerations
 
@@ -17,7 +19,15 @@ If any results shows are displayed then you must close the application running o
 
 # Getting Started
 
-## Node.js:
+To start
+Install Npm : Npm install.
+Run the following commands in your terminal:
+Npm run dev npm: for Web
+Npm start : for Server
+
+I am running on nodemode 3000 and Npm run dev for install express
+
+#### Node.js:
 
 I have to install nodejs to my project
 
